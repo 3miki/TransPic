@@ -71,7 +71,7 @@ def translate_object_name(object_name: str, language: str) -> str:
 
 # test the functions
 if __name__ == "__main__":
-    image_path = os.path.join(os.path.dirname(__file__), "image/banana.jpg")
+    image_path = os.path.join(os.path.dirname(__file__), "image/bird.jpg")
     image = Image.open(image_path)
     language = "Japanese"
 
