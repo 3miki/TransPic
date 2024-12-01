@@ -1,27 +1,35 @@
 import os
 from PIL import Image
 from dotenv import load_dotenv
-from huggingface_hub import login
 from transformers import AutoProcessor, PaliGemmaForConditionalGeneration, pipeline
 
 load_dotenv()
 
-token=os.getenv("HF_AUTH_TOKEN")
-login(token)
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-
 def get_object_name(image: Image) -> str:
-    model_id = "google/paligemma-3b-mix-224"
+    model_id = "google/paligemma-3b-pt-224"
     model = PaliGemmaForConditionalGeneration.from_pretrained(model_id)
     processor = AutoProcessor.from_pretrained(model_id)
 
-    prompt = "<image><bos> What is in the image? Describe the main item in the image."
+    prompt = "What is the main item in this image?"
     inputs = processor(image, prompt, return_tensors="pt")
 
-    raw_output = model.generate(**inputs, max_new_tokens=50)
+    raw_output = model.generate(
+        **inputs,
+        max_new_tokens=20,
+        repetition_penalty=1.2,
+    )
 
-    decode_output = processor.batch_decode(raw_output, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+    # decode_output0 = processor.decode(raw_output[0], skip_special_tokens=True)
+    # print("decode_output0: ", decode_output0)
+    # decode_output1 = processor.decode(raw_output[0], skip_special_tokens=True)[len(prompt):]
+    # print("decode_output1: ", decode_output1)
+
+    try:
+        decode_output = processor.decode(raw_output[0], skip_special_tokens=True)[len(prompt):].strip()
+        print("decode_output: ", decode_output)
+    except Exception as e:
+        print("Error: ", e)
+
     return decode_output
 
 # vision_model_id = "google/paligemma-3b-mix-224"
@@ -41,14 +49,16 @@ def translate_object_name(object_name: str, language: str) -> str:
         "text-generation",
         model=model_id,
         device="mps",  # to run on a Mac device
-        max_new_tokens=50, 
+        max_new_tokens=20, 
         repetition_penalty=1.2,  # higher than 1.0 is less likely to repeat text
         no_repeat_ngram_size=2, # prevent repeating 2-word sequences
     )
 
-    input_text = f"Translate the following word into {language}. Answer only the translation and do not include this input message. The word is: " + object_name
+    input_text = f"What is the following word in {language}. Respond with only the {language} translation excluding description, any special charactors. " + object_name
     outputs = pipe(input_text)
-    response = outputs[0]["generated_text"]
+    response = outputs[0]["generated_text"][len(input_text):].strip()
+    print("unprocessed response: ",outputs[0]["generated_text"])
+    print("response: ", response)
     return response
 
 
@@ -77,6 +87,7 @@ if __name__ == "__main__":
 
     object_name = get_object_name(image)
     print("Original word:", object_name)
-    
+
+    # object_name = "flower"
     translation = translate_object_name(object_name, language)
     print("Translation:", translation)
