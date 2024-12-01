@@ -14,3 +14,8 @@ An AI-powered tool that converts text from images into your desired language. It
 
 - Run program files To run the python from terminal using PDM and streamlit, use the following command:
 `uv run streamlit run dashboard.py`
+
+## To Do
+- Add a function to take a picture
+- Improve inference speed by using tequniques such as quantization or pruning.
+- Improve capabilities of PaliGemma detection into more specific usecases by fine-tuning the PaliGemma on specific datasets such as food, plant or bird names.
