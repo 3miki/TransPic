@@ -3,6 +3,7 @@
 # TransPic
 An AI-powered tool that converts text from images into your desired language. It combines the Gemma Vision model with the Gemma multilingual model to translate text effectively.
 
+## App link: [TransPic](https://transpic.streamlit.app/)
 
 ## Technology
 - PaliGemma(paligemma-3b-pt-224): Vision model to identify text from images
