@@ -22,7 +22,7 @@ login(hf_auth_token)
 uploaded_file = st.file_uploader("Choose an image file 🖼️", type=["jpg", "jpeg", "png"])
 
 # select language
-language = st.selectbox("Select a language 💬", ["Japanese", "Chinese", "Spanish,"])
+language = st.selectbox("Select a language 💬", ["Japanese", "Chinese", "Spanish"])
 
 # show button when image is uploaded
 if uploaded_file:
