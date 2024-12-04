@@ -24,7 +24,7 @@ if api_key_input:
 uploaded_file = st.file_uploader("Choose an image file 🖼️", type=["jpg", "jpeg", "png"])
 
 # select language
-language = st.selectbox("Select a language 💬", ["Japanese", "Chinese", "Spanish"])
+language = st.selectbox("Select a language 💬", ["Chinese", "Germany", "Japanese", "Spanish", "Thai"])
 
 # show button when image is uploaded
 if uploaded_file:
@@ -45,14 +45,9 @@ if uploaded_file:
             generation_config=generation_config,
             )
             
-            prompt = f"What is the main item in this image? Respond with only the name of the object in English and provide the translation in {language}."
+            prompt = f"What is the main item in this image? Respond with only the name of the object in English and provide the translation in {language}. Format your response as follows: 'object_name, translation'."
             response = model.generate_content([prompt, image])
-
+            print(response.text)
             # display response
-            response_text = "Identified object name is: " + response.text
-            output_html = f"""
-            <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                <p style="font-size: 18px; font-weight: bold;">{response_text}</p>
-            </div>
-            """
-            st.markdown(output_html, unsafe_allow_html=True)
+            st.write("Identified object name is: ")
+            st.header(response.text)
