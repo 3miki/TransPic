@@ -3,8 +3,6 @@
 # TransPic
 An AI-powered tool that converts text from images into your desired language. It combines the Gemma Vision model with the Gemma multilingual model to translate text effectively.
 
-## App link: [TransPic](https://transpic.streamlit.app/)
-
 ## Technology
 - PaliGemma(paligemma-3b-pt-224): Vision model to identify text from images
   - Pre-trained model focuses on object detection
@@ -13,18 +11,24 @@ An AI-powered tool that converts text from images into your desired language. It
   - Instruction tuned model for obtaining translations in the desired format
 - Streamlit: Frontend and backend framework for building the app interface
 
-## Set Up
-- Set a hugging face token(HF_AUTH_TOKEN) in .env file. (modify example.env)
-- Download [uv](https://docs.astral.sh/uv/getting-started/installation/) (package and dependency manager for python).
-- `uv sync` to install dependencies.
-- [option] `uv add <package name>` to add new packages.
+## Local Setup Instructions
+- Add your Hugging Face token (HF_AUTH_TOKEN) to the .env file (use example.env as a reference).
+- Download and install [UV](https://docs.astral.sh/uv/getting-started/installation/), a package and dependency manager for Python.
+- Run ~~`uv sync`~~ `uv pip install -r pyproject.toml --extra heavy` to install all required dependencies.
+- [Optional] To add a new package, use the command: `uv add <package name>`.
+- use the following command to execute program using UV and Streamlit: `uv run streamlit run dashboard.py`.
 
-- Run program files To run the python from terminal using PDM and streamlit, use the following command: `uv run streamlit run dashboard.py`
+## Challenge
+- Deploying two models simultaneously is resource-intensive.
+- The PaliGemma can identify only generic categories and cannot distinguish specific species or types.
 
 ## Future Work
-- Add a function to take a picture (create a mobile app if feasable).
-- Improve inference speed by using tequniques such as quantization or pruning.
-- Improve capabilities of PaliGemma detection into more specific usecases by fine-tuning the PaliGemma on specific datasets such as food, plant or bird names.
+- Add a function to capture pictures directly (develop a mobile app if feasable).
+- Enhance inference speed and reduce running cost through techniques like quantization or pruning.
+- Extend PaliGemma’s detection capabilities to specific use cases by fine-tuning it with specialized datasets, such as food, plant, or bird species.
 
-## App Image
+## Streamlit App link: [TransPic](https://transpic.streamlit.app/)
+- Due to resource constraints for running Gemma models, the app currently uses the Gemini API.
+
+#### App Image
 ![App image](/gallery/app.png)
