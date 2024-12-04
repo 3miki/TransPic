@@ -1,7 +1,11 @@
 ![Cover](/gallery/cover.png)
 
 # TransPic
-An AI-powered tool that converts text from images into your desired language. It combines the Gemma Vision model with the Gemma multilingual model to translate text effectively.
+This app is designed for language learners and travelers who want to identify objects such as food, aminal and plant, and learn their names in their preferred language. 
+
+By translating visual images into text, it offers an intuitive and interactive way to learn, making language acquisition and travel experiences more engaging and enjoyable!
+
+Visit the app here: [TransPic](https://transpic.streamlit.app/)
 
 ## Technology
 - PaliGemma(paligemma-3b-pt-224): Vision model to identify text from images
@@ -9,7 +13,7 @@ An AI-powered tool that converts text from images into your desired language. It
   - 224 pixels for faster inference (but may affect accuracy)
 - Gemma2 2B (gemma-2-2b-it): Multilingual model for translation tasks
   - Instruction tuned model for obtaining translations in the desired format
-- Streamlit: Frontend and backend framework for building the app interface
+- Streamlit: For building the app interface
 
 ## Local Setup Instructions
 - Add your Hugging Face token (HF_AUTH_TOKEN) to the .env file (use example.env as a reference).
