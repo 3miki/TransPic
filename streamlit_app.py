@@ -11,6 +11,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning, message="The `use
 
 st.title('TransPic 📷')
 
+st.write("Upload an image you want to identify and choose your language for translation.")
+
 # display disclaimer
 st.info("By using this app, you accept the Google Gemma's Terms of Use found at:\nai.google.dev/gemma/terms")
 
@@ -34,7 +36,15 @@ if uploaded_file:
         with st.spinner('Translating image...'):
             # run models to generate answers
             image_name = get_object_name(image)
-            st.write("Identified object name is: ", image_name)
+            # st.write("Identified object name is: ", image_name)
 
             translation = translate_object_name(image_name, language)
-            st.write("The translation is: ", translation)
+            # st.write("The translation is: ", translation)
+
+            response_text = "Identified object name is: " + image_name + "<br> The translation is: " + translation
+            output_html = f"""
+            <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                <p style="font-size: 18px; margin: 0px 0px 0px 0px; font-weight: bold;">{response_text}</p>
+            </div>
+            """
+            st.markdown(output_html, unsafe_allow_html=True)
