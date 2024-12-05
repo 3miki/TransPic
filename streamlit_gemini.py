@@ -11,28 +11,30 @@ st.write("Upload an image of the object you want to identify and choose your lan
 
 # set up API key
 st.info("This app uses the Gemini-Flash 1.5 model for its responses. To use it, you’ll need a Google Gemini API key. Get your key [here](https://ai.google.dev/gemini-api/docs/api-key).")
-
 api_key_input = st.text_input("Step 1: Enter your Gemini API Key 🗝️", type="password")
-# if api_key_input:
-#     st.session_state.api_key = None
-#     if st.button("Save API Key"):
-#         st.session_state.api_key = api_key_input
-#         genai.configure(api_key=st.session_state.api_key)
-#         st.success("API Key saved in session!")
 
 # select language
 language = st.selectbox("Step 2: Select a language 💬", ["Chinese", "Germany", "Japanese", "Malay", "Spanish", "Thai"])
 
 # upload image file
-uploaded_file = st.file_uploader("Step 3: Choose an image file 🖼️", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Step 3: Choose an image file or take a picture 🖼️", type=["jpg", "jpeg", "png"])
 
+# camera mode
+enable_camera = st.checkbox("Enable camera 📷")
+captured_image = st.camera_input("Take a picture", disabled=not enable_camera)
 
-# show button when image is uploaded
+image_path = None
 if uploaded_file:
-    # display image
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", width=300)
+    image_path = uploaded_file
 
+if captured_image:
+    image_path = captured_image
+
+# display image and traslate button when image is uploaded
+if image_path:
+    image = Image.open(image_path)
+    st.image(image, caption="Uploaded Image", width=300)
+    # action when button is clicked
     if st.button("Translate", key="translate_button"):
         if not api_key_input:
             st.error("Please enter your Gemini API Key.")

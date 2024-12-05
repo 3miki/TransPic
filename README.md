@@ -27,7 +27,8 @@ By translating visual images into text, it makes language acquisition more intui
 - The PaliGemma can identify only generic categories and cannot distinguish specific species or types.
 
 ## Future Work
-- Add a function to capture pictures directly (develop a mobile app if feasable).
+- Add a feature to capture pictures directly. [added 05-Dec-2024]
+- Develop a mobile app if feasable.
 - Enhance inference speed and reduce running cost through techniques like quantization or pruning.
 - Extend PaliGemma’s detection capabilities to specific use cases by fine-tuning it with specialized datasets, such as food, plant, or bird species.
 
