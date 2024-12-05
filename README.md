@@ -1,11 +1,11 @@
 ![Cover](/gallery/cover.png)
 
 # TransPic
-This app is designed for language learners and travelers who want to identify objects such as food, aminal and plant, and learn their names in their preferred language. 
+This app is designed for language learners and travellers who want to identify objects such as food, aminal and plant, and learn their names in their preferred language. 
 
-By translating visual images into text, it offers an intuitive and interactive way to learn, making language acquisition and travel experiences more engaging and enjoyable!
+By translating visual images into text, it makes language acquisition more intuitive and travel experiences more enjoyable!
 
-Visit the app here: [TransPic](https://transpic.streamlit.app/)
+#### Visit the app [here](https://transpic.streamlit.app/).
 
 ## Technology
 - PaliGemma(paligemma-3b-pt-224): Vision model to identify text from images
@@ -32,7 +32,8 @@ Visit the app here: [TransPic](https://transpic.streamlit.app/)
 - Extend PaliGemma’s detection capabilities to specific use cases by fine-tuning it with specialized datasets, such as food, plant, or bird species.
 
 ## Streamlit App link: [TransPic](https://transpic.streamlit.app/)
-- Due to resource constraints for running Gemma models, the app currently uses the Gemini API.
+- Due to resource constraints for running Gemma models, the app currently uses the Gemini API (Gemini flash 1.5 model).
+- Language selection: Chinese, Germany, Japanese, Malay, Spanish, Thai (selection is limited for more intuitive interaction).
 
 #### App Image
-![App image](/gallery/app.png)
+![App image](/gallery/app2.png)
